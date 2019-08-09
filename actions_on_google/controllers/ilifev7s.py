@@ -27,7 +27,4 @@ def send_response():
         payload = {'action': action}
         requests.post(ILIFEV7S_ENDPOINT, data=payload)
 
-    res = {
-        "testKey": "testValue"
-    }
-    return jsonify(res)
+    return jsonify(), 204
