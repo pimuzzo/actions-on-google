@@ -6,6 +6,7 @@ from actions_on_google.config.config import ILIFEV7S_ALLOWED_ACTIONS, ENVIRONMEN
 ilifev7s_api = Blueprint('ilifev7s_api', __name__)
 
 
+# queryResult:='{"parameters": {"action": "clean"}, "fulfillmentText": "response text"}'
 @ilifev7s_api.route('/ilifev7s', methods=['POST'])
 def send_response():
     try:
@@ -15,14 +16,12 @@ def send_response():
     current_app.logger.info(f'received object: {req}')
 
     try:
-        # queryResult:='{"parameters": {"action": "clean"}, "fulfillmentText": "response text"}'
         action = req['queryResult']['parameters']['action']
     except:
         return jsonify({'error': 'missing queryResult.parameters.action parameter'}), 400
 
     try:
-        # queryResult:='{"parameters": {"action": "clean"}, "fulfillmentText": "response text"}'
-        fullfillment_text = req['queryResult']['fulfillmentText']
+        fulfillment_text = req['queryResult']['fulfillmentText']
     except:
         return jsonify({'error': 'missing queryResult.fulfillmentText parameter'}), 400
 
@@ -34,14 +33,14 @@ def send_response():
         requests.post(ILIFEV7S_ENDPOINT, data=payload)
 
     res = {
-        "fulfillmentText": fullfillment_text,
+        "fulfillmentText": fulfillment_text,
         "payload": {
             "google": {
                 "richResponse": {
                     "items": [
                         {
                             "simpleResponse": {
-                                "textToSpeech": fullfillment_text,
+                                "textToSpeech": fulfillment_text,
                             }
                         }
                     ],
