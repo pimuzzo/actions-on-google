@@ -15,10 +15,16 @@ def send_response():
     current_app.logger.info(f'received object: {req}')
 
     try:
-        # queryResult:='{"parameters": {"action": "clean"}}'
+        # queryResult:='{"parameters": {"action": "clean"}, "fulfillmentText": "response text"}'
         action = req['queryResult']['parameters']['action']
     except:
         return jsonify({'error': 'missing queryResult.parameters.action parameter'}), 400
+
+    try:
+        # queryResult:='{"parameters": {"action": "clean"}, "fulfillmentText": "response text"}'
+        fullfillment_text = req['queryResult']['fulfillmentText']
+    except:
+        return jsonify({'error': 'missing queryResult.fulfillmentText parameter'}), 400
 
     if action not in ILIFEV7S_ALLOWED_ACTIONS:
         return jsonify({'error': f'action {action} not permitted'}), 400
@@ -27,4 +33,35 @@ def send_response():
         payload = {'action': action}
         requests.post(ILIFEV7S_ENDPOINT, data=payload)
 
-    return jsonify(), 204
+    res = {
+        "fulfillmentText": fullfillment_text,
+        "payload": {
+            "google": {
+                "richResponse": {
+                    "items": [
+                        {
+                            "simpleResponse": {
+                                "textToSpeech": fullfillment_text,
+                            }
+                        }
+                    ],
+                    "suggestions": [
+                        {
+                            "title": "start"
+                        },
+                        {
+                            "title": "clean"
+                        },
+                        {
+                            "title": "go home"
+                        },
+                        {
+                            "title": "pause"
+                        }
+                    ]
+                }
+
+            }
+        }
+    }
+    return jsonify(res)
