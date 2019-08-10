@@ -30,7 +30,7 @@ def send_response():
 
     if ENVIRONMENT is 'prod':
         payload = {'action': action}
-        requests.post(ILIFEV7S_ENDPOINT, data=payload)
+        requests.post(ILIFEV7S_ENDPOINT, json=payload)
 
     res = {
         "fulfillmentText": fulfillment_text,
