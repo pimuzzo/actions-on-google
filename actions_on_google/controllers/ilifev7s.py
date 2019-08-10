@@ -1,7 +1,7 @@
 import requests
 from flask import Blueprint, jsonify, request, current_app
 
-from actions_on_google.config.config import ILIFEV7S_ALLOWED_ACTIONS, ENVIRONMENT, ILIFEV7S_ENDPOINT
+from actions_on_google.config.config import ILIFEV7S_ALLOWED_ACTIONS, ILIFEV7S_ENDPOINT
 
 ilifev7s_api = Blueprint('ilifev7s_api', __name__)
 
@@ -23,8 +23,7 @@ def send_response():
     if action not in ILIFEV7S_ALLOWED_ACTIONS:
         return jsonify({'error': f'action {action} not permitted'}), 400
 
-    if ENVIRONMENT is 'prod':
-        payload = {'action': action}
-        requests.post(ILIFEV7S_ENDPOINT, json=payload)
+    payload = {'action': action}
+    requests.post(ILIFEV7S_ENDPOINT, json=payload)
 
     return jsonify(), 204

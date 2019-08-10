@@ -1,5 +1,7 @@
+import os
+
 # Global
-ENVIRONMENT = 'test'  # values allowed are test or prod
+ENVIRONMENT = os.environ.get('FLASK_ENV')  # development or production (default)
 PORT = 4043
 SSL_CONTEXT_CERT = '/etc/letsencrypt/live/my.awesome.domain/fullchain.pem'
 SSL_CONTEXT_KEY = '/etc/letsencrypt/live/my.awesome.domain/privkey.pem'

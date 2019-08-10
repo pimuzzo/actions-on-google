@@ -9,7 +9,6 @@ if SENTRY_DSN:
     sentry_sdk.init(dsn=SENTRY_DSN, integrations=[FlaskIntegration()])
 
 app = Flask(__name__)
-
 app.register_blueprint(ilifev7s_api)
 
 
@@ -19,14 +18,11 @@ def hello():
 
 
 if __name__ == '__main__':
-    debug = True
     ssl_context = None
-    if ENVIRONMENT is 'prod':
-        debug = False
+    if ENVIRONMENT != 'development':
         ssl_context = (SSL_CONTEXT_CERT, SSL_CONTEXT_KEY)
 
     app.run(
-        debug=debug,
         port=PORT,
         host='0.0.0.0',
         ssl_context=ssl_context
