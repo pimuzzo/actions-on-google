@@ -46,7 +46,7 @@ def send_response():
                     ],
                     "suggestions": [
                         {
-                            "title": "start"
+                            "title": "wake up"
                         },
                         {
                             "title": "clean"
