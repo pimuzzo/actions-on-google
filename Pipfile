@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 flask = "==1.1.1"
 requests = "==2.22.0"
+sentry-sdk = {extras = ["flask"],version = "==0.10.2"}
 
 [requires]
 python_version = "3.7"
