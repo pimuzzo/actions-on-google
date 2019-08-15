@@ -8,5 +8,5 @@ SSL_CONTEXT_KEY = '/etc/letsencrypt/live/my.awesome.domain/privkey.pem'
 SENTRY_DSN = ''
 
 # Ilife v7s zone
-ILIFEV7S_ALLOWED_ACTIONS = ['wake_up', 'clean', 'stop', 'up', 'down', 'left', 'right', 'spot', 'home', 'edge']
+ILIFEV7S_ALLOWED_ACTIONS = ['wake_up', 'clean', 'stop', 'spot', 'home', 'edge']
 ILIFEV7S_ENDPOINT = 'http://ilifev7s-rest-remote.local/ilifev7s'
