@@ -12,9 +12,9 @@ app = Flask(__name__)
 app.register_blueprint(ilifev7s_api)
 
 
-@app.route("/")
+@app.route('/')
 def hello():
-    return "Welcome to the actions on Google server!"
+    return 'Welcome to the actions on Google server!'
 
 
 if __name__ == '__main__':
