@@ -12,8 +12,9 @@ The aim of this project is an hub for multiple [Actions on Google](https://devel
 
 ## Configuration
 Take a look to `config.py`
-- `ENVIRONMENT` takes the value from [FLASK_ENV](https://flask.palletsprojects.com/en/1.0.x/cli/#environments) 
+- `ENVIRONMENT` takes the value from [FLASK_ENV](https://flask.palletsprojects.com/en/1.0.x/cli/#environments)
 - `SSL_CONTEXT_CERT` and `SSL_CONTEXT_KEY` are used only if `ENVIRONMENT` is not 'development' (you can use [letsencrypt](https://letsencrypt.org/) to generate them)
+- `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` are optional but recommended to enable basic auth
 - `SENTRY_DSN` is optional and it is the [Sentry](https://sentry.io/) API key<br><br>
 
 

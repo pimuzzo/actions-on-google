@@ -9,6 +9,7 @@ verify_ssl = true
 flask = "==1.1.1"
 requests = "==2.22.0"
 sentry-sdk = {extras = ["flask"],version = "==0.10.2"}
+flask-basicauth = "==0.2.0"
 
 [requires]
 python_version = "3.7"
