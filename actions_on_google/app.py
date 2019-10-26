@@ -1,14 +1,23 @@
 import sentry_sdk
 from flask import Flask
+from flask_basicauth import BasicAuth
 from sentry_sdk.integrations.flask import FlaskIntegration
 
-from actions_on_google.config.config import ENVIRONMENT, PORT, SSL_CONTEXT_CERT, SSL_CONTEXT_KEY, SENTRY_DSN
+from actions_on_google.config.config import ENVIRONMENT, PORT, SSL_CONTEXT_CERT, SSL_CONTEXT_KEY, SENTRY_DSN, \
+    BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD, BASIC_AUTH_FORCE
 from actions_on_google.controllers.ilifev7s import ilifev7s_api
 
 if SENTRY_DSN:
     sentry_sdk.init(dsn=SENTRY_DSN, integrations=[FlaskIntegration()])
 
 app = Flask(__name__)
+
+if BASIC_AUTH_USERNAME and BASIC_AUTH_PASSWORD:
+    app.config['BASIC_AUTH_USERNAME'] = BASIC_AUTH_USERNAME
+    app.config['BASIC_AUTH_PASSWORD'] = BASIC_AUTH_PASSWORD
+    app.config['BASIC_AUTH_FORCE'] = BASIC_AUTH_FORCE
+    basic_auth = BasicAuth(app)
+
 app.register_blueprint(ilifev7s_api)
 
 
