@@ -19,7 +19,7 @@ Take a look to `config.py`
 
 ## Usage
 Run the app (`FLASK_ENV` is optional and it defaults to 'production'):
-- `PYTHONPATH=".:actions_on_google" FLASK_ENV=development pipenv run flask run`<br><br>
+- `PYTHONPATH=".:actions_on_google" FLASK_ENV=development pipenv run python actions_on_google/app.py`<br><br>
 
 
 ## Thanks to
