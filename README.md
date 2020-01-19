@@ -23,5 +23,12 @@ Run the app (`FLASK_ENV` is optional and it defaults to 'production'):
 - `PYTHONPATH=".:actions_on_google" FLASK_ENV=development pipenv run python actions_on_google/app.py`<br><br>
 
 
+# Certificate
+To renew a certificate the project must be served on port 80 and with basic-auth disabled.
+Use the command:
+- `certbot renew --webroot -w $PROJECT_PATH/actions-on-google/actions_on_google/static/`
+
+I will improve it when I have more time<br><br>
+
 ## Thanks to
 - [Actions on Google example](https://github.com/gdgpisa/actions-on-google-diy) The code from [GDG Pisa](https://gdgpisa.it/) that I used to start my project

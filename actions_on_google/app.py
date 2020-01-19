@@ -1,5 +1,5 @@
 import sentry_sdk
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_basicauth import BasicAuth
 from sentry_sdk.integrations.flask import FlaskIntegration
 
@@ -24,6 +24,11 @@ app.register_blueprint(ilifev7s_api)
 @app.route('/')
 def hello():
     return 'Welcome to the actions on Google server!'
+
+
+@app.route('/.well-known/acme-challenge/<path:filename>')
+def well_known_route(filename):
+    return send_from_directory(app.root_path + '/static/.well-known/acme-challenge/', filename, conditional=True)
 
 
 if __name__ == '__main__':
